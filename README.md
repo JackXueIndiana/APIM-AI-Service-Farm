@@ -98,4 +98,4 @@ request_body:
     ]
 ~~~
 - Test the setup with the [sample code](https://github.com/Azure-Samples/openai-apim-lb/blob/main/docs/sample-code.md).
-- Since this sample code didn’t tell you which instance is in use, we fall back to vanilla http call as you can see in tryme.py. With this code, we can easily see the aiform1 hit first, and the aiform0. Then we may already reach the rate limit and need wait a few second to see another call go through, possible is aiform1 again.
+- Since this sample code didn’t tell you which instance is in use, we fall back to vanilla http call as you can see in tryme.py. With this code, we can easily see the aifarm1 hit first, and the aifarm0. As we may already reach the rate limit and need wait a few second to see another call go through, possible hit aifarm1 again.
