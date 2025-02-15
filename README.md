@@ -1,9 +1,9 @@
 # APIM-AI-Service-Farm
 This repo is to demonstrate how we implement manual steps to use APIM as a load balancer to distribute GPT chat/completions calls to two gpt-35-tubo models belonging to different Azure AI services.
 
-We start from the best practice of APIM farming OpenAI endpoint, describeded in this [document](https://learn.microsoft.com/en-us/samples/azure-samples/openai-apim-lb/openai-apim-lb/). We take the [Manual Steps](https://github.com/azure-samples/openai-apim-lb/blob/main/docs/manual-setup.md).
+We start from the best practice of APIM farming OpenAI endpoint, described in this [document](https://learn.microsoft.com/en-us/samples/azure-samples/openai-apim-lb/openai-apim-lb/). We take the [Manual Steps](https://github.com/azure-samples/openai-apim-lb/blob/main/docs/manual-setup.md).
 
-Here is the note we made in the each steps:
+Here is the note we made in each steps:
 
 Step 1: Provision Azure API Management Instance
 - Create a new resource group
@@ -22,7 +22,7 @@ Step 4: Download and Prepare API Schema
 ~~~
   "servers": [
       {
-      "url": "https://microsoft.com/openai",
+      "url": https://microsoft.com/openai,
       "variables": {
           "endpoint": {
           "default": "itdoesntmatter.openai.azure.com"
@@ -54,7 +54,7 @@ Step 7: Update API Management Policy
 ~~~
 backends.Add(new JObject()
                     {
-                        { "url", "https://xjxfarm0.cognitiveservices.azure.com" },
+                        { "url", https://xjxfarm0.cognitiveservices.azure.com },
                         { "priority", 1},
                         { "isThrottling", false }, 
                         { "retryAfter", DateTime.MinValue } 
@@ -62,7 +62,7 @@ backends.Add(new JObject()
 
                     backends.Add(new JObject()
                     {
-                        { "url", "https://xjxfarm1.cognitiveservices.azure.com" },
+                        { "url", https://xjxfarm1.cognitiveservices.azure.com },
                         { "priority", 0},
                         { "isThrottling", false },
                         { "retryAfter", DateTime.MinValue }
@@ -98,4 +98,4 @@ request_body:
     ]
 ~~~
 - Test the setup with the [sample code](https://github.com/Azure-Samples/openai-apim-lb/blob/main/docs/sample-code.md).
-- Since this sample code dodnot tell you which instance is in use, we fall back to vanila http call as you can see in tryme.py. With this code, we can easily see the aiform1 hit first, and the aiform0. Then we may already reach the rate limit and need wait a few second to see another call go through, possible is aiform1 again.
+- Since this sample code didn’t tell you which instance is in use, we fall back to vanilla http call as you can see in tryme.py. With this code, we can easily see the aiform1 hit first, and the aiform0. Then we may already reach the rate limit and need wait a few second to see another call go through, possible is aiform1 again.
